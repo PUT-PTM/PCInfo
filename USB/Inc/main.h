@@ -59,6 +59,9 @@
 
 /* Private define ------------------------------------------------------------*/
 
+#define ENC_BUTTON_Pin GPIO_PIN_4
+#define ENC_BUTTON_GPIO_Port GPIOA
+#define ENC_BUTTON_EXTI_IRQn EXTI4_IRQn
 #define SCK_Pin GPIO_PIN_5
 #define SCK_GPIO_Port GPIOA
 #define MOSI_Pin GPIO_PIN_7

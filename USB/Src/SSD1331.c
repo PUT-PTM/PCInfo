@@ -193,7 +193,7 @@ void ssd1331_draw_rect(uint8_t chXpos, uint8_t chYpos, uint8_t chWidth, uint8_t 
 	ssd1331_draw_v_line(chXpos + chWidth, chYpos, chHeight + 1, hwColor);
 }
 
-void ssd1331_fill_rect(uint8_t chXpos, uint8_t chYpos, uint8_t chWidth, uint8_t chHeight, uint16_t hwColor)
+void ssd1331_fill_rect(uint8_t chXpos, uint8_t chYpos, int chWidth, uint8_t chHeight, uint16_t hwColor)
 {
 	uint16_t i, j;
 
