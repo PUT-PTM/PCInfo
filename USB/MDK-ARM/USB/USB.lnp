@@ -7,6 +7,8 @@
 "usb\usb_device.o"
 "usb\main.o"
 "usb\stm32f4xx_it.o"
+"usb\ssd1331.o"
+"usb\fonts.o"
 "usb\system_stm32f4xx.o"
 "usb\usbd_core.o"
 "usb\usbd_cdc.o"
@@ -29,7 +31,8 @@
 "usb\stm32f4xx_hal_dma.o"
 "usb\stm32f4xx_hal_flash_ramfunc.o"
 "usb\stm32f4xx_hal_cortex.o"
---library_type=microlib --strict --scatter "USB\USB.sct"
+"usb\stm32f4xx_hal_spi.o"
+--strict --scatter "USB\USB.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "USB.map" -o USB\USB.axf

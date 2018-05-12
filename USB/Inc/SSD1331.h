@@ -28,6 +28,8 @@
 #include <math.h>
 #include <stdlib.h>
 
+
+
 #define FONT_1206    12
 #define FONT_1608    16
 
@@ -54,7 +56,7 @@ extern void ssd1331_draw_line(uint8_t chXpos0, uint8_t chYpos0, uint8_t chXpos1,
 extern void ssd1331_draw_v_line(uint8_t chXpos, uint8_t chYpos, uint8_t chHeight, uint16_t hwColor);
 extern void ssd1331_draw_h_line(uint8_t chXpos, uint8_t chYpos, uint8_t chWidth, uint16_t hwColor);
 extern void ssd1331_draw_rect(uint8_t chXpos, uint8_t chYpos, uint8_t chWidth, uint8_t chHeight, uint16_t hwColor);
-extern void ssd1331_fill_rect(uint8_t chXpos, uint8_t chYpos, uint8_t chWidth, uint8_t chHeight, uint16_t hwColor);
+extern void ssd1331_fill_rect(uint8_t chXpos, uint8_t chYpos, int chWidth, uint8_t chHeight, uint16_t hwColor);
 extern void ssd1331_draw_circle(uint8_t chXpos, uint8_t chYpos, uint8_t chRadius, uint16_t hwColor);
 extern void ssd1331_display_char(uint8_t chXpos, uint8_t chYpos, uint8_t chChr, uint8_t chSize, uint16_t hwColor);
 extern void ssd1331_display_num(uint8_t chXpos, uint8_t chYpos, uint32_t chNum, uint8_t chLen, uint8_t chSize, uint16_t hwColor);
