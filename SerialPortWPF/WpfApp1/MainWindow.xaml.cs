@@ -30,16 +30,27 @@ namespace WpfApp1
         UpdateVisitor updateVisitor = new UpdateVisitor(); 
         Computer computer = new Computer();
 
+        
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             foreach (string s in SerialPort.GetPortNames())
             {
                 nrPortu.Items.Add(s);
             }
         }
-
-        public class UpdateVisitor : IVisitor
+        private static void DataReceivedHandler(
+                        object sender,
+                        SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            string indata = sp.ReadExisting();
+            MessageBox.Show(indata);
+        }
+    public class UpdateVisitor : IVisitor
         {
             public void VisitComputer(IComputer computer)
             {
@@ -149,7 +160,8 @@ namespace WpfApp1
                 }
                 }
                 _serialPort.Write(data);
-            MessageBox.Show(data);
+            Thread.Sleep(10);
+                MessageBox.Show(_serialPort.ReadLine());
                 computer.Close();
             
         }
