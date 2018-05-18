@@ -36,20 +36,20 @@ namespace WpfApp1
         {
             InitializeComponent();
 
-            _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+           // _serialPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
             foreach (string s in SerialPort.GetPortNames())
             {
                 nrPortu.Items.Add(s);
             }
         }
-        private static void DataReceivedHandler(
-                        object sender,
-                        SerialDataReceivedEventArgs e)
-        {
-            SerialPort sp = (SerialPort)sender;
-            string indata = sp.ReadExisting();
-            MessageBox.Show(indata);
-        }
+        //private static void DataReceivedHandler(
+        //                object sender,
+        //                SerialDataReceivedEventArgs e)
+        //{
+        //    SerialPort sp = (SerialPort)sender;
+        //    string indata = sp.ReadExisting();
+        //    MessageBox.Show(indata);
+        //}
     public class UpdateVisitor : IVisitor
         {
             public void VisitComputer(IComputer computer)
@@ -160,8 +160,8 @@ namespace WpfApp1
                 }
                 }
                 _serialPort.Write(data);
-            Thread.Sleep(10);
-                MessageBox.Show(_serialPort.ReadLine());
+            //Thread.Sleep(10);
+              //  MessageBox.Show(_serialPort.ReadLine());
                 computer.Close();
             
         }

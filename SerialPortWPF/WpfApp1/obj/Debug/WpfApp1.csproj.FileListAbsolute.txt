@@ -36,3 +36,4 @@ C:\Users\User\Documents\GitHub\PCInfo\SerialPortWPF\WpfApp1\obj\Debug\WpfApp1.ex
 C:\Users\User\Documents\GitHub\PCInfo\SerialPortWPF\WpfApp1\obj\Debug\WpfApp1.application
 C:\Users\User\Documents\GitHub\PCInfo\SerialPortWPF\WpfApp1\obj\Debug\WpfApp1.exe
 C:\Users\User\Documents\GitHub\PCInfo\SerialPortWPF\WpfApp1\obj\Debug\WpfApp1.pdb
+C:\Users\User\Documents\GitHub\PCInfo\SerialPortWPF\WpfApp1\obj\Debug\WpfApp1.csprojResolveAssemblyReference.cache
