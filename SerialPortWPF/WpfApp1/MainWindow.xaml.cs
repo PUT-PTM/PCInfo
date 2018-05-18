@@ -124,8 +124,29 @@ namespace WpfApp1
                 {
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
-                        data += computer.Hardware[i].Sensors[j].Name + " : " + (int)computer.Hardware[i].Sensors[j].Value + "_";
+                    if(computer.Hardware[i].Sensors[j].SensorType == SensorType.Clock)
+                    {
+                        data += computer.Hardware[i].Sensors[j].Name + " : " + (int)computer.Hardware[i].Sensors[j].Value + " MHz_";
                     }
+                    else if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Temperature)
+                    {
+                        data += computer.Hardware[i].Sensors[j].Name + " : " + (int)computer.Hardware[i].Sensors[j].Value + " C_";
+                    }
+                    else if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Fan)
+                    {
+                        data += computer.Hardware[i].Sensors[j].Name + " : " + (int)computer.Hardware[i].Sensors[j].Value + " RPM_";
+                    }
+                    else if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Load 
+                        || computer.Hardware[i].Sensors[j].SensorType == SensorType.Control
+                        || computer.Hardware[i].Sensors[j].SensorType == SensorType.Level)
+                    {
+                        data += computer.Hardware[i].Sensors[j].Name + " : " + (int)computer.Hardware[i].Sensors[j].Value + " %_";
+                    }
+                    else if (computer.Hardware[i].Sensors[j].SensorType == SensorType.Voltage)
+                    {
+                        data += computer.Hardware[i].Sensors[j].Name + " : " + (int)computer.Hardware[i].Sensors[j].Value + " V_";
+                    }
+                }
                 }
                 _serialPort.Write(data);
             MessageBox.Show(data);
