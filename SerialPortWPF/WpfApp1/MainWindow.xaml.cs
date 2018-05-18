@@ -124,10 +124,11 @@ namespace WpfApp1
                 {
                     for (int j = 0; j < computer.Hardware[i].Sensors.Length; j++)
                     {
-                        data += computer.Hardware[i].Sensors[j].Name + " : " + computer.Hardware[i].Sensors[j].Value + "\n";
+                        data += computer.Hardware[i].Sensors[j].Name + " : " + (int)computer.Hardware[i].Sensors[j].Value + "_";
                     }
                 }
                 _serialPort.Write(data);
+            MessageBox.Show(data);
                 computer.Close();
             
         }
