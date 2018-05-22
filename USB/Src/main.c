@@ -69,13 +69,9 @@ volatile uint16_t pulse_count; // Licznik impulsow
 volatile uint16_t positions; // Licznik przekreconych pozycji
 volatile int state; //Var needed to change mods
 int prevpos;
-uint8_t Buf[40] = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',//Przeniesione z maina
-									'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',		
-									'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-									'0', '1', '2', '3', '4', '5', '6', '7', '8', '9',	
-									} ; 
-									
+uint8_t Buf[1000] = {'0'};
 
+uint8_t coodebrac = 0;
 int first_row = 1, second_row = 2, third_row = 3, forth_row = 4;									
 //DATA INFO									
 uint8_t inf1[10] = "Temp";						
@@ -272,6 +268,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		/*
 		switch(state){
 			case 0:
 				//Data display on the screen
@@ -318,8 +315,21 @@ int main(void)
 			default:
 				state = 0;
 			break;
-			
+		
 		}
+		*/
+		ssd1331_display_string(0,0,&Buf[0],FONT_1206,GREEN);
+		HAL_Delay(1000);
+		ssd1331_clear_screen(BLACK);
+				
+		ssd1331_display_string(0,0,&Buf[60],FONT_1206,GREEN);
+		HAL_Delay(1000);
+		ssd1331_clear_screen(BLACK);	
+
+
+		ssd1331_display_string(0,0,&Buf[120],FONT_1206,GREEN);
+		HAL_Delay(1000);
+		ssd1331_clear_screen(BLACK);
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
@@ -515,7 +525,12 @@ static void MX_GPIO_Init(void)
 
 /* USER CODE BEGIN 4 */
 void CDC_ReceiveCallBack(uint8_t *buf, uint32_t len){
-	CDC_Transmit_FS(buf, len);
+	//CDC_Transmit_FS(buf, len);
+	if(buf[0] == '!'){
+		strcpy(Buf, buf);
+	} else
+	strcat(Buf,buf);
+	//memcpy(Buf, buf, 1000);
 HAL_GPIO_TogglePin(GPIOD,GPIO_PIN_12);
 }
 /* USER CODE END 4 */
