@@ -67,25 +67,37 @@ TIM_HandleTypeDef htim1;
 /* Private variables ---------------------------------------------------------*/
 volatile uint16_t pulse_count; // Licznik impulsow
 volatile uint16_t positions; // Licznik przekreconych pozycji
+uint8_t coodebrac = 0;
 volatile int state; //Var needed to change mods
 int prevpos;
-uint8_t Buf[1000] = {'0'};
 
-uint8_t coodebrac = 0;
+//DATA INFO		
+uint8_t ln_breaker = '_';
+uint8_t Buf[1200] = {'0', '1', '_', '1', '2', '_','0', '1', '2','3', '_', '0','1', '2', '3','4', '_', '2','0', '1', '2','0', '_', '2','0', '1', '2','0', '_', '2','0', '1', '_','0'};
+uint8_t Info1[40];
+uint8_t Info2[40];
+uint8_t Info3[40];
+uint8_t Info4[40];
+uint8_t Info5[40];
+uint8_t Info6[40];
+uint8_t Info7[40];
+uint8_t Info8[40];
+uint8_t Info9[40];
+uint8_t Info10[40];
+uint8_t Info11[40];
+uint8_t Info12[40];
+uint8_t Info13[40];
+uint8_t Info14[40];
+uint8_t Info15[40];
+uint8_t Info16[40];
+uint8_t Info17[40];
+uint8_t Info18[40];
+uint8_t Info19[40];
+uint8_t Info20[40];
+
+int info_pos[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 int first_row = 1, second_row = 2, third_row = 3, forth_row = 4;									
-//DATA INFO									
-uint8_t inf1[10] = "Temp";						
-uint8_t bufpos1 = 0;
-uint8_t inf2[10] = "RAM";							
-uint8_t bufpos2 = 11;
-uint8_t inf3[10] = "CUSTAM";						
-uint8_t bufpos3 = 22;
-uint8_t inf4[10] = "CPU USED";							
-uint8_t bufpos4 = 33;
-uint8_t inf5[10] = "HDD CUS";						
-uint8_t bufpos5 = 1;
-uint8_t inf6[10] = "TS";							
-uint8_t bufpos6 = 2;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -100,7 +112,67 @@ static void MX_TIM1_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-int check_what_to_display(uint8_t pos){
+
+void search_for_data_packets(){
+
+	pos = 0;
+	for(i = 0; i <= 1000; i++){
+		if(Buf[i] == ln_breaker){
+				if (pos == 0){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 1){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 2){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 3){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 4){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 5){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 6){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 7){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 8){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 9){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 10){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 11){
+					info_pos[pos] = i;
+					pos++;
+				} else break;
+		}
+	}
+	
+	}
+	
+	void buf_partition(uint16_t start_pos, uint16_t end_pos, uint8_t table[100]){
+		if (start_pos <= end_pos){
+		uint16_t cnt = 0;
+		while(start_pos != end_pos){
+		table[cnt] = Buf[start_pos];
+		start_pos++;
+		cnt++;
+		}
+	}
+	}
+	
+	
+	int check_what_to_display(uint8_t pos){
 	if (pos == 1)
 	return first_row;
 	else
@@ -113,41 +185,151 @@ int check_what_to_display(uint8_t pos){
 	if (pos == 4)
 	return forth_row;
 }
-	
-void ez_display(uint8_t *param_name, uint8_t buf_pos, uint8_t ypos){
-		//Easy setting things to display
-		ssd1331_display_string(0, ypos, param_name, FONT_1608, GREEN);
-	
-	for(int i = 0; i < 3; i++){
-		ssd1331_display_char(60+(6*i), ypos, Buf[buf_pos+i] , FONT_1608, GREEN);
-	}
-}
 
 
-void disp_row(uint8_t row){
+void disp_row(uint8_t row, bool option){
+	//FALSE to display first portion of data, TRUE to display second portion of data
+	int end_at = 11;
+	int start_at = 11;
 switch(check_what_to_display(row)){
 		case 1:
-		ez_display(inf1, bufpos1, (row-1)*16);
+			for(int i = 0; i < end_at; i++){
+			if(Info1[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info1[(start_at*option)+i],FONT_1608, GREEN);
+			}	
 		break;
 		
 		case 2:
-		ez_display(inf2, bufpos2, (row-1)*16);
+			for(int i = 0; i < end_at; i++){
+			if(Info2[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info2[(start_at*option)+i],FONT_1608, GREEN);
+			}	
 		break;
-		
-		case 3:
-		ez_display(inf3, bufpos3, (row-1)*16);
+			
+			case 3:
+			for(int i = 0; i < end_at; i++){
+			if(Info3[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info3[(start_at*option)+i],FONT_1608, GREEN);
+			}	
 		break;
-		
-		case 4:
-		ez_display(inf4, bufpos4, (row-1)*16);
+			
+			case 4:
+			for(int i = 0; i < end_at; i++){
+			if(Info4[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info4[(start_at*option)+i],FONT_1608, GREEN);
+			}	
 		break;
-		
-		case 5:
-		ez_display(inf5, bufpos5, (row-1)*16);
+			
+			case 5:
+			for(int i = 0; i < end_at; i++){
+			if(Info5[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info5[(start_at*option)+i],FONT_1608, GREEN);
+			}	
 		break;
-		
-		case 6:
-		ez_display(inf6, bufpos6, (row-1)*16);
+			
+			case 6:
+			for(int i = 0; i < end_at; i++){
+			if(Info6[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info6[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 7:
+			for(int i = 0; i < end_at; i++){
+			if(Info7[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info7[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 8:
+			for(int i = 0; i < end_at; i++){
+			if(Info8[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info8[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 9:
+			for(int i = 0; i < end_at; i++){
+			if(Info9[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info9[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 10:
+			for(int i = 0; i < end_at; i++){
+			if(Info10[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info10[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 11:
+			for(int i = 0; i < end_at; i++){
+			if(Info11[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info11[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 12:
+			for(int i = 0; i < end_at; i++){
+			if(Info12[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info12[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 13:
+			for(int i = 0; i < end_at; i++){
+			if(Info13[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info13[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 14:
+			for(int i = 0; i < end_at; i++){
+			if(Info14[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info14[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 15:
+			for(int i = 0; i < end_at; i++){
+			if(Info15[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info15[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 16:
+			for(int i = 0; i < end_at; i++){
+			if(Info16[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info16[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 17:
+			for(int i = 0; i < end_at; i++){
+			if(Info17[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info17[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 18:
+			for(int i = 0; i < end_at; i++){
+			if(Info18[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info18[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 19:
+			for(int i = 0; i < end_at; i++){
+			if(Info19[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info19[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 20:
+			for(int i = 0; i < end_at; i++){
+			if(Info20[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info20[(start_at*option)+i],FONT_1608, GREEN);
+			}	
 		break;
 		}
 	}
@@ -174,25 +356,25 @@ void set_row(uint8_t row, bool option){
 			forth_row--;
 	}
 	
-		if(first_row == 7)
+		if(first_row == 21)
 		first_row = 1;
 		if(first_row == 0)
-		first_row = 6;
+		first_row = 20;
 		
-		if(second_row == 7)
+		if(second_row == 21)
 		second_row = 1;
 		if(second_row == 0)
-		second_row = 6;
+		second_row = 20;
 	 
-		if(third_row == 7)
+		if(third_row == 21)
 		third_row = 1;
 		if(third_row == 0)
-		third_row = 6;
+		third_row = 20;
 		
-		if(forth_row == 7)
+		if(forth_row == 21)
 		forth_row = 1;
 		if(forth_row == 0)
-		forth_row = 6;
+		forth_row = 20;
 }
 	
 	void change_info(uint8_t which_place){
@@ -204,27 +386,55 @@ void set_row(uint8_t row, bool option){
 	if (prevpos > positions){
 		set_row(which_place, 0);
 		ssd1331_fill_rect(0, (which_place - 1) * 16, 100, 16, BLUE);
-		disp_row(which_place);
+		disp_row(which_place,0);
 		prevpos = positions;
 			} 
 	else if (prevpos < positions){
 		set_row(which_place, 1);
 		ssd1331_fill_rect(0, (which_place - 1) * 16, 100, 16, BLUE);
-		disp_row(which_place);
+		disp_row(which_place,0);
 		prevpos = positions;
 			} 
 		}
 }	
 
-	void show_display(void){
+	void show_display(bool option){
+
 	//Data display on the screen
 	ssd1331_clear_screen(BLACK);
-	disp_row(1);
-	disp_row(2);
-	disp_row(3);
-	disp_row(4);
+	disp_row(1,option);
+	disp_row(2,option);
+	disp_row(3,option);
+	disp_row(4,option);
 }	
 
+void get_data(){
+	search_for_data_packets();
+	
+	buf_partition(1, info_pos[0], Info1);
+	buf_partition(info_pos[0]+1, info_pos[1], Info2);
+	buf_partition(info_pos[1]+1, info_pos[2], Info3);
+	buf_partition(info_pos[2]+1, info_pos[3], Info4);
+	buf_partition(info_pos[3]+1, info_pos[4], Info5);
+	buf_partition(info_pos[4]+1, info_pos[5], Info6);
+	buf_partition(info_pos[5]+1, info_pos[6], Info7);
+	buf_partition(info_pos[6]+1, info_pos[7], Info8);
+	buf_partition(info_pos[7]+1, info_pos[8], Info9);
+	buf_partition(info_pos[8]+1, info_pos[9], Info10);
+	buf_partition(info_pos[9]+1, info_pos[10], Info11);
+	buf_partition(info_pos[10]+1, info_pos[11], Info12);
+	buf_partition(info_pos[11]+1, info_pos[12], Info13);
+	buf_partition(info_pos[12]+1, info_pos[13], Info12);
+	buf_partition(info_pos[13]+1, info_pos[14], Info14);
+	buf_partition(info_pos[14]+1, info_pos[15], Info15);
+	buf_partition(info_pos[15]+1, info_pos[16], Info16);
+	buf_partition(info_pos[16]+1, info_pos[17], Info17);
+	buf_partition(info_pos[17]+1, info_pos[18], Info18);
+	buf_partition(info_pos[18]+1, info_pos[19], Info19);
+	
+
+
+}
 /**
   * @brief  The application entry point.
   *
@@ -261,55 +471,64 @@ int main(void)
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL);
 	ssd1331_init();
+	
 	ssd1331_clear_screen(BLACK);
+	ssd1331_display_string(20,0,"PCInfo",FONT_1608,BLUE);
+	ssd1331_display_string(37,16,"By",FONT_1206,RED);
+	ssd1331_display_string(8,28,"Rafal Adamski",FONT_1206,RED);
+	ssd1331_display_string(40,40,"&",FONT_1206,RED);
+	ssd1331_display_string(8,52,"Adam Olszewski",FONT_1206,RED);
 	  /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		/*
+	//	while(Buf[0] != '!'){}
+	get_data();
 		switch(state){
 			case 0:
 				//Data display on the screen
-				show_display();
-				HAL_Delay(1000);
+			show_display(0);
+			HAL_Delay(800);
+			show_display(1);
+			HAL_Delay(800);
 			break;
 			//Change displayed data (first row)
 			case 1:
 				prevpos = positions;
 				ssd1331_fill_rect(0, 0, 100, 16, BLUE);
-				disp_row(1);
+				disp_row(1,0);
 				change_info(1);
 			  ssd1331_fill_rect(0, 0, 100, 16, BLACK);
-				disp_row(1);
+				disp_row(1,0);
 			break;
 			
 			case 2:
 				prevpos = positions;
 				ssd1331_fill_rect(0, 16, 100, 16, BLUE);
-				disp_row(2);
+				disp_row(2,0);
 				change_info(2);
 				ssd1331_fill_rect(0, 16, 100, 16, BLACK);
-				disp_row(2);
+				disp_row(2,0);
 			break;
 			
 			case 3:
 				prevpos = positions;
 				ssd1331_fill_rect(0, 32, 100, 16, BLUE);
-				disp_row(3);
+				disp_row(3,0);
 				change_info(3);
 				ssd1331_fill_rect(0, 32, 100, 16, BLACK);
-				disp_row(3);
+				disp_row(3,0);
 			break;
 			
 			case 4:
 				prevpos = positions;
 				ssd1331_fill_rect(0, 48, 100, 16, BLUE);
-				disp_row(4);
+				disp_row(4,0);
 				change_info(4);
 				ssd1331_fill_rect(0, 48, 100, 16, BLACK);
-				disp_row(4);
+				disp_row(4,0);
 			break;
 			
 			default:
@@ -317,7 +536,7 @@ int main(void)
 			break;
 		
 		}
-		*/
+		/*
 		ssd1331_display_string(0,0,&Buf[0],FONT_1206,GREEN);
 		HAL_Delay(1000);
 		ssd1331_clear_screen(BLACK);
@@ -330,6 +549,7 @@ int main(void)
 		ssd1331_display_string(0,0,&Buf[120],FONT_1206,GREEN);
 		HAL_Delay(1000);
 		ssd1331_clear_screen(BLACK);
+		*/
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
