@@ -50,7 +50,7 @@ namespace WpfApp1
         //    string indata = sp.ReadExisting();
         //    MessageBox.Show(indata);
         //}
-    public class UpdateVisitor : IVisitor
+        public class UpdateVisitor : IVisitor
         {
             public void VisitComputer(IComputer computer)
             {
@@ -159,9 +159,9 @@ namespace WpfApp1
                     }
                 }
                 }
-                _serialPort.Write(data);
+             _serialPort.Write("!" + data);
             //Thread.Sleep(10);
-              //  MessageBox.Show(_serialPort.ReadLine());
+            //  MessageBox.Show(_serialPort.ReadLine());
                 computer.Close();
             
         }
