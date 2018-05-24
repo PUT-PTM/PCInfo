@@ -22,7 +22,7 @@ Dialog DLL:      TCM.DLL V1.35.1.0
  
 <h2>Project:</h2>
 D:\Eclipse\Projects\Git\PCInfo\USB\MDK-ARM\USB.uvprojx
-Project File Date:  05/01/2018
+Project File Date:  05/24/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\KEIL MDKARM5\ARM\ARMCC\Bin'
@@ -34,9 +34,17 @@ compiling usbd_cdc_if.c...
 compiling usbd_desc.c...
 compiling usb_device.c...
 compiling main.c...
-../Src/main.c(119): warning:  #940-D: missing return statement at end of non-void function "check_what_to_display" 
+../Src/main.c(253): warning:  #940-D: missing return statement at end of non-void function "check_what_to_display" 
   }
-../Src/main.c: 1 warning, 0 errors
+../Src/main.c(885): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+                strcpy(Buf, buf);
+../Src/main.c(885): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *restrict"
+                strcpy(Buf, buf);
+../Src/main.c(887): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "char *restrict"
+        strcat(Buf,buf);
+../Src/main.c(887): warning:  #167-D: argument of type "uint8_t *" is incompatible with parameter of type "const char *restrict"
+        strcat(Buf,buf);
+../Src/main.c: 5 warnings, 0 errors
 compiling stm32f4xx_it.c...
 compiling SSD1331.c...
 compiling Fonts.c...
@@ -64,9 +72,9 @@ compiling stm32f4xx_hal_flash_ramfunc.c...
 compiling stm32f4xx_hal_cortex.c...
 compiling stm32f4xx_hal_spi.c...
 linking...
-Program Size: Code=15350 RO-data=3102 RW-data=500 ZI-data=30988  
+Program Size: Code=17946 RO-data=3102 RW-data=1396 ZI-data=32308  
 FromELF: creating hex file...
-"USB\USB.axf" - 0 Error(s), 1 Warning(s).
+"USB\USB.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 

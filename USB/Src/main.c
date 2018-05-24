@@ -70,10 +70,9 @@ volatile uint16_t positions; // Licznik przekreconych pozycji
 uint8_t coodebrac = 0;
 volatile int state; //Var needed to change mods
 int prevpos;
-
 //DATA INFO		
 uint8_t ln_breaker = '_';
-uint8_t Buf[1200] = {'0', '1', '_', '1', '2', '_','0', '1', '2','3', '_', '0','1', '2', '3','4', '_', '2','0', '1', '2','0', '_', '2','0', '1', '2','0', '_', '2','0', '1', '_','0'};
+uint8_t Buf[1000] = {'0', '1', '_', '1', '2', '_','0', '1', '2','3', '_', '0','1', '2', '3','4', '_', '2','0', '1', '2','0', '_', '2','0', '1', '2','0', '_', '2','0', '1', '_','0'};
 uint8_t Info1[40];
 uint8_t Info2[40];
 uint8_t Info3[40];
@@ -94,8 +93,18 @@ uint8_t Info17[40];
 uint8_t Info18[40];
 uint8_t Info19[40];
 uint8_t Info20[40];
+uint8_t Info21[40];
+uint8_t Info22[40];
+uint8_t Info23[40];
+uint8_t Info24[40];
+uint8_t Info25[40];
+uint8_t Info26[40];
+uint8_t Info27[40];
+uint8_t Info28[40];
+uint8_t Info29[40];
+uint8_t Info30[40];
 
-int info_pos[20] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+int info_pos[30] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 int first_row = 1, second_row = 2, third_row = 3, forth_row = 4;									
 
 /* USER CODE END PV */
@@ -114,7 +123,7 @@ static void MX_TIM1_Init(void);
 /* USER CODE BEGIN 0 */
 
 void search_for_data_packets(){
-
+	int i, pos;
 	pos = 0;
 	for(i = 0; i <= 1000; i++){
 		if(Buf[i] == ln_breaker){
@@ -154,6 +163,63 @@ void search_for_data_packets(){
 				} else if (pos == 11){
 					info_pos[pos] = i;
 					pos++;
+				} else if (pos == 12){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 13){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 14){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 15){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 16){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 17){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 18){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 19){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 20){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 21){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 22){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 23){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 24){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 25){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 26){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 27){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 28){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 29){
+					info_pos[pos] = i;
+					pos++;
+				} else if (pos == 30){
+					info_pos[pos] = i;
+					pos++;
 				} else break;
 		}
 	}
@@ -190,7 +256,7 @@ void search_for_data_packets(){
 void disp_row(uint8_t row, bool option){
 	//FALSE to display first portion of data, TRUE to display second portion of data
 	int end_at = 11;
-	int start_at = 11;
+	int start_at = 12;
 switch(check_what_to_display(row)){
 		case 1:
 			for(int i = 0; i < end_at; i++){
@@ -331,6 +397,76 @@ switch(check_what_to_display(row)){
 			ssd1331_display_char(i*8,(row-1)*16,Info20[(start_at*option)+i],FONT_1608, GREEN);
 			}	
 		break;
+			
+			case 21:
+			for(int i = 0; i < end_at; i++){
+			if(Info21[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info21[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 22:
+			for(int i = 0; i < end_at; i++){
+			if(Info22[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info22[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 23:
+			for(int i = 0; i < end_at; i++){
+			if(Info23[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info23[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 24:
+			for(int i = 0; i < end_at; i++){
+			if(Info24[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info24[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 25:
+			for(int i = 0; i < end_at; i++){
+			if(Info25[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info25[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 26:
+			for(int i = 0; i < end_at; i++){
+			if(Info26[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info26[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 27:
+			for(int i = 0; i < end_at; i++){
+			if(Info27[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info27[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 28:
+			for(int i = 0; i < end_at; i++){
+			if(Info28[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info28[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 29:
+			for(int i = 0; i < end_at; i++){
+			if(Info29[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info29[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
+			
+			case 30:
+			for(int i = 0; i < end_at; i++){
+			if(Info30[(start_at*option)+i] != NULL)
+			ssd1331_display_char(i*8,(row-1)*16,Info30[(start_at*option)+i],FONT_1608, GREEN);
+			}	
+		break;
 		}
 	}
 
@@ -356,25 +492,25 @@ void set_row(uint8_t row, bool option){
 			forth_row--;
 	}
 	
-		if(first_row == 21)
+		if(first_row == 31)
 		first_row = 1;
 		if(first_row == 0)
-		first_row = 20;
+		first_row = 30;
 		
-		if(second_row == 21)
+		if(second_row == 31)
 		second_row = 1;
 		if(second_row == 0)
-		second_row = 20;
+		second_row = 30;
 	 
-		if(third_row == 21)
+		if(third_row == 31)
 		third_row = 1;
 		if(third_row == 0)
-		third_row = 20;
+		third_row = 30;
 		
-		if(forth_row == 21)
+		if(forth_row == 31)
 		forth_row = 1;
 		if(forth_row == 0)
-		forth_row = 20;
+		forth_row = 30;
 }
 	
 	void change_info(uint8_t which_place){
@@ -387,12 +523,18 @@ void set_row(uint8_t row, bool option){
 		set_row(which_place, 0);
 		ssd1331_fill_rect(0, (which_place - 1) * 16, 100, 16, BLUE);
 		disp_row(which_place,0);
+		HAL_Delay(400);
+		ssd1331_fill_rect(0, (which_place - 1) * 16, 100, 16, BLUE);
+		disp_row(which_place,1);
 		prevpos = positions;
 			} 
 	else if (prevpos < positions){
 		set_row(which_place, 1);
 		ssd1331_fill_rect(0, (which_place - 1) * 16, 100, 16, BLUE);
 		disp_row(which_place,0);
+		HAL_Delay(400);
+		ssd1331_fill_rect(0, (which_place - 1) * 16, 100, 16, BLUE);
+		disp_row(which_place,1);
 		prevpos = positions;
 			} 
 		}
@@ -410,7 +552,6 @@ void set_row(uint8_t row, bool option){
 
 void get_data(){
 	search_for_data_packets();
-	
 	buf_partition(1, info_pos[0], Info1);
 	buf_partition(info_pos[0]+1, info_pos[1], Info2);
 	buf_partition(info_pos[1]+1, info_pos[2], Info3);
@@ -431,8 +572,16 @@ void get_data(){
 	buf_partition(info_pos[16]+1, info_pos[17], Info17);
 	buf_partition(info_pos[17]+1, info_pos[18], Info18);
 	buf_partition(info_pos[18]+1, info_pos[19], Info19);
-	
-
+	buf_partition(info_pos[19]+1, info_pos[20], Info20);
+	buf_partition(info_pos[20]+1, info_pos[21], Info21);
+	buf_partition(info_pos[21]+1, info_pos[22], Info22);
+	buf_partition(info_pos[22]+1, info_pos[23], Info23);
+	buf_partition(info_pos[23]+1, info_pos[24], Info24);
+	buf_partition(info_pos[24]+1, info_pos[25], Info25);
+	buf_partition(info_pos[25]+1, info_pos[26], Info26);
+	buf_partition(info_pos[26]+1, info_pos[27], Info27);
+	buf_partition(info_pos[27]+1, info_pos[28], Info28);
+	buf_partition(info_pos[28]+1, info_pos[29], Info29);
 
 }
 /**
@@ -484,7 +633,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	//	while(Buf[0] != '!'){}
+	while(Buf[0] != '!'){}
 	get_data();
 		switch(state){
 			case 0:
@@ -536,25 +685,11 @@ int main(void)
 			break;
 		
 		}
-		/*
-		ssd1331_display_string(0,0,&Buf[0],FONT_1206,GREEN);
-		HAL_Delay(1000);
-		ssd1331_clear_screen(BLACK);
-				
-		ssd1331_display_string(0,0,&Buf[60],FONT_1206,GREEN);
-		HAL_Delay(1000);
-		ssd1331_clear_screen(BLACK);	
 
-
-		ssd1331_display_string(0,0,&Buf[120],FONT_1206,GREEN);
-		HAL_Delay(1000);
-		ssd1331_clear_screen(BLACK);
-		*/
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-	//CDC_Transmit_FS(Buf,strlen((char*)Buf));
-	//	HAL_Delay(500);
+
   }
   /* USER CODE END 3 */
 
