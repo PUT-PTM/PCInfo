@@ -60,9 +60,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
-
 TIM_HandleTypeDef htim1;
-
+TIM_HandleTypeDef htim10;
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
 volatile uint16_t pulse_count; // Licznik impulsow
@@ -70,9 +69,10 @@ volatile uint16_t positions; // Licznik przekreconych pozycji
 uint8_t coodebrac = 0;
 volatile int state; //Var needed to change mods
 int prevpos;
+uint32_t timer10;
 //DATA INFO		
 uint8_t ln_breaker = '_';
-uint8_t Buf[1000] = {'0', '1', '_', '1', '2', '_','0', '1', '2','3', '_', '0','1', '2', '3','4', '_', '2','0', '1', '2','0', '_', '2','0', '1', '2','0', '_', '2','0', '1', '_','0'};
+uint8_t Buf[1000];
 uint8_t Info1[40];
 uint8_t Info2[40];
 uint8_t Info3[40];
@@ -114,6 +114,8 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM1_Init(void);
+static void MX_TIM10_Init(void);
+
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
@@ -226,7 +228,7 @@ void search_for_data_packets(){
 	
 	}
 	
-	void buf_partition(uint16_t start_pos, uint16_t end_pos, uint8_t table[100]){
+void buf_partition(uint16_t start_pos, uint16_t end_pos, uint8_t table[100]){
 		if (start_pos <= end_pos){
 		uint16_t cnt = 0;
 		while(start_pos != end_pos){
@@ -238,7 +240,7 @@ void search_for_data_packets(){
 	}
 	
 	
-	int check_what_to_display(uint8_t pos){
+int check_what_to_display(uint8_t pos){
 	if (pos == 1)
 	return first_row;
 	else
@@ -513,7 +515,7 @@ void set_row(uint8_t row, bool option){
 		forth_row = 30;
 }
 	
-	void change_info(uint8_t which_place){
+void change_info(uint8_t which_place){
 		
 	while(state != which_place+1){
 		pulse_count = TIM1->CNT; // przepisanie wartosci z rejestru timera
@@ -540,7 +542,7 @@ void set_row(uint8_t row, bool option){
 		}
 }	
 
-	void show_display(bool option){
+void show_display(bool option){
 
 	//Data display on the screen
 	ssd1331_clear_screen(BLACK);
@@ -617,10 +619,13 @@ int main(void)
   MX_USB_DEVICE_Init();
   MX_SPI1_Init();
   MX_TIM1_Init();
+  MX_TIM10_Init();
+
   /* USER CODE BEGIN 2 */
 	HAL_TIM_Encoder_Start(&htim1, TIM_CHANNEL_ALL);
+	HAL_TIM_Base_Start_IT(&htim10);
 	ssd1331_init();
-	
+	timer10 = __HAL_TIM_GetCounter(&htim10); 
 	ssd1331_clear_screen(BLACK);
 	ssd1331_display_string(20,0,"PCInfo",FONT_1608,BLUE);
 	ssd1331_display_string(37,16,"By",FONT_1206,RED);
@@ -633,7 +638,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	while(Buf[0] != '!'){}
+
+	while(Buf[0] != '!'){	}
 	get_data();
 		switch(state){
 			case 0:
@@ -811,6 +817,22 @@ static void MX_TIM1_Init(void)
   sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+}
+
+/* TIM10 init function */
+static void MX_TIM10_Init(void)
+{
+
+  htim10.Instance = TIM10;
+  htim10.Init.Prescaler = 9999;
+  htim10.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim10.Init.Period = 49909;
+  htim10.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  if (HAL_TIM_Base_Init(&htim10) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
