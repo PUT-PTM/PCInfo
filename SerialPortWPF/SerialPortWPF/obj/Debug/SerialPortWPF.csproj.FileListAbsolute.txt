@@ -1,0 +1,16 @@
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\bin\Debug\SerialPortWPF.exe.config
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\bin\Debug\SerialPortWPF.exe
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\bin\Debug\SerialPortWPF.pdb
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\bin\Debug\OpenHardwareMonitorLib.dll
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF.csprojResolveAssemblyReference.cache
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\MainWindow.g.cs
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\App.g.cs
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF_MarkupCompile.cache
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF_MarkupCompile.lref
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\MainWindow.baml
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF.g.resources
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF.Properties.Resources.resources
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF.csproj.GenerateResource.Cache
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF.exe
+C:\Users\User\Desktop\Studia 2018\SerialPortWPF\SerialPortWPF\obj\Debug\SerialPortWPF.pdb
