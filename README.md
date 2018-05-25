@@ -36,8 +36,8 @@ Sending data from Linux
 
 ## Attributions 
 
-Virtual COM Port - https://github.com/xenovacivus/STM32DiscoveryVCP
-OpenHardwareMonitor library - https://github.com/openhardwaremonitor/openhardwaremonitor
+* Virtual COM Port - https://github.com/xenovacivus/STM32DiscoveryVCP
+* OpenHardwareMonitor library - https://github.com/openhardwaremonitor/openhardwaremonitor
 
 ## License
 
