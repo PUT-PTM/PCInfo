@@ -29,21 +29,21 @@ After plugging to a PC, our project will start displaying "Welcome screen", unti
 ## Pins scheme
 PRIPHERAL -> MICROCONTROLLER
 
-OLED:
-VCC -> 3V or 5V
-GND -> GND
-PA5 -> CLK
-PA7 -> DIN
-PC5 -> CS
-PB1 -> DC
-PE7 -> RES
+#### OLED:
+* VCC -> 3V or 5V
+* GND -> GND
+* PA5 -> CLK
+* PA7 -> DIN
+* PC5 -> CS
+* PB1 -> DC
+* PE7 -> RES
 
-ENCODER:
-VCC -> 3V
-GND -> GND
-SW -> PA6
-SIB -> PE11
-SIA -> PE9        
+#### ENCODER:
+* VCC -> 3V
+* GND -> GND
+* SW -> PA6
+* SIB -> PE11
+* SIA -> PE9        
 
 ## How to compile
 
