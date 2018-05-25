@@ -24,7 +24,7 @@ Data is sending every one second.
 
 ## How to run
 
-Run WpfApp1.exe as administrator, choose the right port and click "Wyslij dane".
+Run SerialPortWPF.exe as administrator, choose the right port and click "Wyslij dane".
 
 ## How to compile
 
