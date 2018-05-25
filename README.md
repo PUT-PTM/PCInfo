@@ -27,8 +27,7 @@ After plugging to a PC, our project will start displaying "Welcome screen", unti
 * Encoder with button
 
 ## Pins scheme
-PRIPHERAL -> MICROCONTROLLER
-
+PERIPHERAL -> MICROCONTROLLER
 #### OLED:
 * VCC -> 3V or 5V
 * GND -> GND
