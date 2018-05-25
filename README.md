@@ -24,7 +24,7 @@ Data is sending every one second.
 
 ## How to run
 
-Run WpfApp1, choose the right port and click "Wyslij dane".
+Run WpfApp1.exe, choose the right port and click "Wyslij dane".
 
 ## How to compile
 
