@@ -7,8 +7,9 @@ PCInfo was made for sending data about hardware like temperature, fan RPM etc. t
 ## Description
 
 * Computer side:
-
+```
 Requirements: Windows with .NET Framework 3.0 or higher. 
+```
 Windows Presentation Foundation application, which allows us to manage serial ports and sending data using Virtual COM Port.
 Data is sending every one second. 
 
