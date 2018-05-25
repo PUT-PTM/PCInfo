@@ -23,16 +23,35 @@ After plugging to a PC, our project will start displaying "Welcome screen", unti
 * Virtual COM Port 
 * OpenHardwareMonitor library - https://github.com/openhardwaremonitor/openhardwaremonitor
 * STM
-* OLED Display (0,95'' 96x64px favorable)
+* OLED Display (0,95" 96x64px favorable)
 * Encoder with button
 
-## How to run
+## Pins scheme
+PRIPHERAL -> MICROCONTROLLER
 
-Plug your microcontroller to your PC. Run SerialPortWPF.exe as administrator, choose the right port and click "Wyslij dane". After that STM will soon display live data.
+OLED:
+VCC -> 3V or 5V
+GND -> GND
+PA5 -> CLK
+PA7 -> DIN
+PC5 -> CS
+PB1 -> DC
+PE7 -> RES
+
+ENCODER:
+VCC -> 3V
+GND -> GND
+SW -> PA6
+SIB -> PE11
+SIA -> PE9        
 
 ## How to compile
 
 Download repository, compile and upload to your MC.
+
+## How to run
+
+Plug your microcontroller to your PC. Run SerialPortWPF.exe as administrator, choose the right port and click "Wyslij dane". After that STM will soon display live data.
 
 ## Future improvements
 
